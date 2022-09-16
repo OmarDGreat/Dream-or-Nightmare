@@ -7,7 +7,7 @@ class Dream extends Model{};
 //create columns for Dream model
 Dream.init(
     {
-        id:{
+        dream_id:{
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
@@ -21,7 +21,7 @@ Dream.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate:{
-        len: [10]
+                len: [10]
             }
         },
         post_url:{

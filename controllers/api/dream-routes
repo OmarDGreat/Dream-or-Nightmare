@@ -1,3 +1,9 @@
-const {Dream} = require('../../models');
+const Dream = require('../../models/');
 
-router.post('/',)
+get.post('/api/dream',(req,res)=>{
+    Dream.create({
+        title: req.body.title,
+        post_url: req.body.post_url
+    })
+})
+
