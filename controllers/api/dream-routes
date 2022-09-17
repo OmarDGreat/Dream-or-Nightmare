@@ -1,9 +1,15 @@
 const Dream = require('../../models/');
 
-get.post('/api/dream',(req,res)=>{
+router.post('/api/dream_story',(req,res)=>{
     Dream.create({
         title: req.body.title,
-        post_url: req.body.post_url
+        dream_story: req.body.dream_story,
+        user_id: req.session.user_id
     })
-})
+    .then(dreamData=> res.json(dreamData))
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
 

@@ -30,6 +30,12 @@ Dream.init(
             validate:{
                 isURL: true,
             }
+        },
+        upvote:{
+            type: DataTypes.INTEGER
+        },
+        downvote:{
+            type: DataTypes.INTEGER
         }
     },
     {
