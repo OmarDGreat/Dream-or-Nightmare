@@ -14,6 +14,12 @@ async function newDreamHandler(event){
             'Content-Type': 'application/json'
         }
     });
-}
+    
+    if(response.ok){
+        document.location.reload();
+    } else {
+        alert(response.statusText);
+    }
+};
 
 documnet.querySelector('#post-dream-form').addEventListener('submit', newDreamHandler);
