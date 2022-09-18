@@ -1,44 +1,40 @@
+
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-// create our Dream model
-class Dream extends Model {}
+class Vote extends Model {}
 
-// create fields/columns for Dream model
-Dream.init(
+Vote.init(
     {
       id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
         primaryKey: true,
         autoIncrement: true
       },
-      title: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      Dream_url: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          isURL: true
-        }
-      },
       user_id: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
           model: 'user',
+          key: 'id'
+        }
+      },
+      dream_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'dream',
           key: 'id'
         }
       }
     },
     {
       sequelize,
+      timestamps: false,
       freezeTableName: true,
       underscored: true,
-      modelName: 'Dream'
+      modelName: 'vote'
     }
   );
 
-
-  module.exports = Dream;
+module.exports = Vote;

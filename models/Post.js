@@ -1,11 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-// create our Dream model
-class Dream extends Model {}
+// create our Post model
+class Post extends Model {}
 
-// create fields/columns for Dream model
-Dream.init(
+// create fields/columns for Post model
+Post.init(
     {
       id: {
         type: DataTypes.INTEGER,
@@ -17,7 +17,7 @@ Dream.init(
         type: DataTypes.STRING,
         allowNull: false
       },
-      Dream_url: {
+      post_url: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
@@ -36,9 +36,9 @@ Dream.init(
       sequelize,
       freezeTableName: true,
       underscored: true,
-      modelName: 'Dream'
+      modelName: 'post'
     }
   );
 
 
-  module.exports = Dream;
+  module.exports = Post;
