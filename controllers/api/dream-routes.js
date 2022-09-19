@@ -1,4 +1,5 @@
-const Dream = require('../../models/');
+const router = require("express").Router();
+const Dream = require('../../models');
 
 router.post('/api/dream_story',(req,res)=>{
     Dream.create({
@@ -13,3 +14,4 @@ router.post('/api/dream_story',(req,res)=>{
     });
 });
 
+module.exports = router;
