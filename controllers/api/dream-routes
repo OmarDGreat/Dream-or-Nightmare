@@ -1,4 +1,4 @@
-const Dream = require('../../models/');
+const Dream = require('../../models');
 
 router.post('/api/dream_story',(req,res)=>{
     Dream.create({
