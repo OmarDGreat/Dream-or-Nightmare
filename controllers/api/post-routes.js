@@ -107,9 +107,6 @@ router.delete("/:id", (req, res) => {
       res.status(500).json(err);
     });
 });
-// m's updates below
-router.get('/my-dreams',(req,res) => {
-  res.render('my-dreams')
-})
+
 
 module.exports = router;
