@@ -30,5 +30,6 @@
   "bugs": {
     "url": "https://github.com/OmarDGreat/Dream-or-Nightmare/issues"
   },
-  "homepage": "https://github.com/OmarDGreat/Dream-or-Nightmare#readme"
+  "homepage": "https://github.com/OmarDGreat/Dream-or-Nightmare#readme",
+  "devDependencies": {}
 }
