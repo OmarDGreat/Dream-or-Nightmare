@@ -50,35 +50,6 @@ User.init(
         len: [4],
       },
     },
-    upvotes: {
-      type: DataTypes.ARRAY(DataTypes.INTEGER),
-      allowNull: true,
-      include:[
-        {
-          model: Dream,
-          attributes: ["id"]
-        },
-        {
-          model: User,
-          attributes: ["id"]
-        }
-        ]
-    },
-      downvotes: {
-      type: DataTypes.ARRAY(DataTypes.INTEGER),
-      allowNull: true,
-      include:[
-        {
-          model: Dream,
-          attributes: ["id"]
-        },
-        {
-          model: User,
-          attributes: ["id"]
-        }
-        ]
-    },
-    
   },
   {
     hooks: {
