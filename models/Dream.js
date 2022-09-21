@@ -13,11 +13,11 @@ Dream.init(
     },
     title: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     dream_story: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
       validate: {
         len: [10],
       },
