@@ -1,9 +1,8 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const homepage = '../views/homepage.handlebars'
 
 router.get('/homepage',(req,res)=>{
-  res.render(homepage)
+  res.render('homepage')
 });
 
 
