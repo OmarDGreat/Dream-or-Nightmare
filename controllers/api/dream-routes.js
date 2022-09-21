@@ -1,7 +1,11 @@
 const router = require("express").Router();
 const Dream = require('../../models');
 
-router.post('/api/dream_story',(req,res)=>{
+router.get('/dream_story', (req,res)=>{
+    
+})
+
+router.post('/dream_story',(req,res)=>{
     Dream.create({
         title: req.body.title,
         dream_story: req.body.dream_story,

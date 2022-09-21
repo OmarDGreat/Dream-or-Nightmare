@@ -22,4 +22,6 @@ async function newDreamHandler(event){
     }
 };
 
+// find the record for dream id (findbyPK), add one to upvote/downvote, then save. 
+
 documnet.querySelector('#post-dream-form').addEventListener('submit', newDreamHandler);
