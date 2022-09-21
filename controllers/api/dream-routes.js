@@ -14,4 +14,9 @@ router.post('/dream_story',(req,res)=>{
     });
 });
 
+// m's updates below
+router.get('/my-dreams',(req,res) => {
+    res.render('my-dreams')
+  })
+
 module.exports = router;
