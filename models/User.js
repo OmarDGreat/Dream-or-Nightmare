@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 const bcrypt = require("bcrypt");
-const Dream = require("./Dream");
 
 // create our User model
 class User extends Model {
@@ -49,34 +48,6 @@ User.init(
         // this means the password must be at least four characters long
         len: [4],
       },
-    },
-    upvotes: {
-      type: DataTypes.ARRAY(DataTypes.INTEGER),
-      allowNull: true,
-      include:[
-        {
-          model: Dream,
-          attributes: ["id"]
-        },
-        {
-          model: User,
-          attributes: ["id"]
-        }
-        ]
-    },
-      downvotes: {
-      type: DataTypes.ARRAY(DataTypes.INTEGER),
-      allowNull: true,
-      include:[
-        {
-          model: Dream,
-          attributes: ["id"]
-        },
-        {
-          model: User,
-          attributes: ["id"]
-        }
-        ]
     },
     
   },
