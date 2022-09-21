@@ -1,6 +1,13 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 
+var hbsContent = {
+  userName: "",
+  loggedin: false,
+  title: "You are not logged in today",
+  body: "Hello World",
+};
+
 router.get('/homepage',(req,res)=>{
   res.render('homepage')
 });

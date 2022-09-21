@@ -12,11 +12,6 @@ router.use((req, res) => {
 
 const User = require("../models/userSchema");
 
-var hbsContent = {
-  userName: "",
-  loggedin: false,
-  title: "You are not logged in today",
-  body: "Hello World",
-};
+
 
 module.exports = router;

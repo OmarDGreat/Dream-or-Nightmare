@@ -17,6 +17,7 @@ async function newDreamHandler(event){
     
     if(response.ok){
         document.location.reload();
+        alert('it worked');
     } else {
         alert(response.statusText);
     }
