@@ -12,6 +12,9 @@ router.get('/homepage',(req,res)=>{
   res.render('homepage')
 });
 
+router.get('/my-dreams',(req,res) =>{
+  res.render('my-dreams')
+});
 
 // middleware function to check for logged-in users
 var sessionChecker = (req, res, next) => {
