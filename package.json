@@ -1,35 +1,30 @@
 {
-  "name": "dream-or-nightmare",
+  "name": "handlebars",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
-    "daemon": "^1.1.0",
+    "body-parser": "^1.20.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "express-handlebars": "^6.0.6",
-    "handlebars": "^4.7.7",
-    "init": "^0.1.2",
+    "express-session": "^1.17.3",
+    "express-toastr": "^2.0.2",
+    "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
-    "node": "^18.9.0",
-    "sequelize": "^6.23.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/OmarDGreat/Dream-or-Nightmare.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/OmarDGreat/Dream-or-Nightmare/issues"
-  },
-  "homepage": "https://github.com/OmarDGreat/Dream-or-Nightmare#readme",
-  "devDependencies": {}
+    "nodemon": "^2.0.20",
+    "pg": "^8.8.0",
+    "sequelize": "^6.22.1",
+    "toast": "^0.5.4"
+  }
 }
