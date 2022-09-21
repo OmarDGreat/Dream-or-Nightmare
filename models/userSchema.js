@@ -37,7 +37,7 @@ UserSchema.init ({
   sequelize,
   freezeTableName: true,
   underscored: true,
-  modelName: "Dream",
+  modelName: "userSchema",
 }
 );
 
