@@ -4,7 +4,7 @@ async function newDreamHandler(event){
     const title = document.querySelector('input[name="dream-title"]').value;
     const dreamPost=document.querySelector('textarea[name="dream-story"]').value;
 
-    const response = await fetch('api/dream_story',{
+    const response = await fetch('api/dreams',{
         method: 'POST',
         body: JSON.stringify({
             title,

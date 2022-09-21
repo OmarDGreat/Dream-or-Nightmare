@@ -24,7 +24,15 @@ var UserSchema = sequelize.define("users", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-});
+},
+{
+  sequelize,
+  freezeTableName: true,
+  underscored: true,
+  modelName: "userSchema",
+}
+);
+
 
 UserSchema.beforeCreate((user, options) => {
   const salt = bcrypt.genSaltSync(); //genSaltSync(It generates random bits of numbers and characters)

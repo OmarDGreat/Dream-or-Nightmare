@@ -9,8 +9,6 @@ User.hasMany(Dream,{
 })
 
 
-
-
 module.exports = Dream;
 
 // User hasMany Dreams
