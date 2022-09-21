@@ -1,21 +1,16 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const {User, Dream} = require('../models');
-const withAuth = require('../utils/auth');
 
-// get all posts for dashboard
-router.get('/', withAuth, (req, res) => {
-  console.log(req.session);
+// get all posts for homepage
+router.get('/', (req, res) => {
   console.log('======================');
   Dream.findAll({
-    where: {
-      user_id: req.session.user_id
-    },
     attributes: [
       'id',
       'title',
       'dream_story',
-      'created_at'
+      'created_at',
     ],
     include: [
       {
@@ -26,7 +21,10 @@ router.get('/', withAuth, (req, res) => {
   })
   .then(dbDreamData => {
     const dreams = dbDreamData.map(dream => dream.get({ plain: true }));
-    res.render('dashboard', { dreams, loggedIn: true });
+    res.render('homepage', {
+      dreams,
+      loggedIn: req.session.loggedIn
+    });
   })
   .catch(err => {
     console.log(err);
@@ -35,7 +33,8 @@ router.get('/', withAuth, (req, res) => {
 });
 
 // get one post
-router.get('/edit/:id', withAuth, (req, res) => {
+
+router.get('/dream/:id', (req, res) => {
   Dream.findOne({
     where: {
       id: req.params.id
@@ -56,10 +55,9 @@ router.get('/edit/:id', withAuth, (req, res) => {
   .then(dbDreamData => {
     if (dbDreamData) {
       const dream = dbDreamData.get({ plain: true });
-
-      res.render('edit-dream', {
+      res.render('single-dream', {
         dream,
-        loggedIn: true
+        loggedIn: req.session.loggedIn
       });
     } else {
       res.status(404).end();
@@ -70,5 +68,20 @@ router.get('/edit/:id', withAuth, (req, res) => {
   });
 });
 
+// login
+router.get('/login', (req, res) => {
+  // If a session exists, redirect the request to the homepage
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('login');
+});
+
+// signup
+router.get('/signup', (req, res) => {
+  res.render('signup');
+});
 
 module.exports = router;
