@@ -1,7 +1,12 @@
-<ol class="post-list">
-  {{#each posts as |post|}}
-  <li>
-    {{> post-info post }}
-  </li>
-  {{/each}}
-</ol>
+<article>
+    <p>welcome</p>
+    <div>
+        <div>{{dreams.title}}</div>
+        <div class="random-dream">{{dreams.dream_story}}</div>
+        <p>{{dreams.upvote}}</p>
+        <button>upvote</button>
+        <button>downvote</button>
+        <p>{{dreams.downvote}}</p>
+        <div class="sharethis-inline-share-buttons"></div>
+    </div>
+</article>

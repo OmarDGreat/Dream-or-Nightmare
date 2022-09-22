@@ -13,12 +13,19 @@ router.get('/', (req, res) => {
     });
 });
 
+// get one user
 router.get('/:id', (req, res) => {
   User.findOne({
     attributes: { exclude: ['password'] },
     where: {
       id: req.params.id
-    }
+    },
+    include: [
+      {
+        model: Dream,
+        attributes: ['id', 'title', 'dream_story', 'created_at']
+      }
+    ]
   })
     .then(dbUserData => {
       if (!dbUserData) {
@@ -33,8 +40,8 @@ router.get('/:id', (req, res) => {
     });
 });
 
+// create user
 router.post('/', (req, res) => {
-  // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
   User.create({
     username: req.body.username,
     email: req.body.email,
@@ -45,7 +52,7 @@ router.post('/', (req, res) => {
         req.session.user_id = dbUserData.id;
         req.session.username = dbUserData.username;
         req.session.loggedIn = true;
-  
+
         res.json(dbUserData);
       });
     })
@@ -55,8 +62,8 @@ router.post('/', (req, res) => {
     });
 });
 
+// user login
 router.post('/login', (req, res) => {
-  // expects {email: 'lernantino@gmail.com', password: 'password1234'}
   User.findOne({
     where: {
       email: req.body.email
@@ -74,16 +81,18 @@ router.post('/login', (req, res) => {
       return;
     }
 
-    // req.session.save(() => {
-    //   req.session.user_id = dbUserData.id;
-    //   req.session.username = dbUserData.username;
-    //   req.session.loggedIn = true;
-  
+    req.session.save(() => {
+      // declare session variables
+      req.session.user_id = dbUserData.id;
+      req.session.username = dbUserData.username;
+      req.session.loggedIn = true;
+
       res.json({ user: dbUserData, message: 'You are now logged in!' });
-    // });
+    });
   });
 });
 
+// user logout
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
@@ -95,9 +104,8 @@ router.post('/logout', (req, res) => {
   }
 });
 
+// update user
 router.put('/:id', (req, res) => {
-  // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
-
   // pass in req.body instead to only update what's passed through
   User.update(req.body, {
     individualHooks: true,
@@ -106,7 +114,7 @@ router.put('/:id', (req, res) => {
     }
   })
     .then(dbUserData => {
-      if (!dbUserData) {
+      if (!dbUserData[0]) {
         res.status(404).json({ message: 'No user found with this id' });
         return;
       }
@@ -118,6 +126,7 @@ router.put('/:id', (req, res) => {
     });
 });
 
+// delete user
 router.delete('/:id', (req, res) => {
   User.destroy({
     where: {

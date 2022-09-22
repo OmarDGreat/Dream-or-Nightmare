@@ -1,62 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Just Tech News</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
-</head>
-
-<body>
-  <div class="wrapper">
-    <header>
-      <h1>
-        <a href="/">Just Tech News</a>
-      </h1>
-      <nav>
-        {{#if loggedIn}}
-        <a href="/dashboard">dashboard</a>
-        <button id="logout" class="btn-no-style">logout</button>
-        {{else}}
-        <a href="/login">login</a>
-        {{/if}}
-      </nav>
-    </header>
-    <main>
-      {{{ body }}}
-    </main>
-    <footer>
-      Thanks for visiting!
-    </footer>
-  </div>
-  
-  {{#if loggedIn}}
-  <script src="/public/javascript/login.js"></script>
-  {{/if}}
-</body>
-
-</html>
-
-{{!-- <html>
+<html>
     <head>
-		<title>
+        <title>
         {{# if loggedin}}
-			Welcome {{userName}}
-		{{else }}
-			NodeJS
-		{{/if}}
-		</title>
+            Welcome {{userName}}, to your Dream or Nightmare
+        {{else }}
+            Dream or Nightmares
+        {{/if}}
+        </title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+        <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=632b9c24560f0d00125e7883&product=inline-share-buttons" async="async"></script>
     </head>
     <body class="container">
         <div class="page-header">
-            <h1>Dream Post Blog</h1>
+            <h1>Save Your Dreams, Read the Dreams of Others</h1>
         </div>
-
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -66,20 +26,16 @@
                         <li><a href="/signup">Sign Up</a></li>
                         <li><a href="/dashboard">Dashboard</a></li>
                     </ul>
-
                     <ul class="nav navbar-nav navbar-right">
-					{{# if loggedin}}
-						<li><a href="/logout">Log Out</a></li>
-					{{else }}
-						<li><a href="/login">Log In</a></li>
-					{{/if}}
-                        
+                    {{# if loggedin}}
+                        <li><a href="/logout">Log Out</a></li>
+                    {{else }}
+                        <li><a href="/login">Log In</a></li>
+                    {{/if}}
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-
        {{{body}}}
     </body>
 </html>
- --}}

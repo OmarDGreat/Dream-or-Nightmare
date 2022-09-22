@@ -34,41 +34,5 @@ router.get('/', withAuth, (req, res) => {
   });
 });
 
-// get one post
-router.get('/edit/:id', withAuth, (req, res) => {
-  Dream.findOne({
-    where: {
-      id: req.params.id
-    },
-    attributes: [
-      'id',
-      'title',
-      'dream_story',
-      'created_at'
-    ],
-    include: [
-      {
-        model: User,
-        attributes: ['username']
-      }
-    ]
-  })
-  .then(dbDreamData => {
-    if (dbDreamData) {
-      const dream = dbDreamData.get({ plain: true });
-
-      res.render('edit-dream', {
-        dream,
-        loggedIn: true
-      });
-    } else {
-      res.status(404).end();
-    }
-  })
-  .catch(err => {
-    res.status(500).json(err);
-  });
-});
-
 
 module.exports = router;

@@ -2,34 +2,9 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const {User, Dream} = require('../models');
 
-// get all posts for homepage
+//render homepage
 router.get('/', (req, res) => {
-  console.log('======================');
-  Dream.findAll({
-    attributes: [
-      'id',
-      'title',
-      'dream_story',
-      'created_at',
-    ],
-    include: [
-      {
-        model: User,
-        attributes: ['username']
-      }
-    ]
-  })
-  .then(dbDreamData => {
-    const dreams = dbDreamData.map(dream => dream.get({ plain: true }));
-    res.render('homepage', {
-      dreams,
-      loggedIn: req.session.loggedIn
-    });
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  });
+  res.render('homepage');
 });
 
 // get one post
@@ -54,9 +29,9 @@ router.get('/dream/:id', (req, res) => {
   })
   .then(dbDreamData => {
     if (dbDreamData) {
-      const dream = dbDreamData.get({ plain: true });
-      res.render('single-dream', {
-        dream,
+      const dreams = dbDreamData.get({ plain: true });
+      res.render('homepage', {
+        dreams,
         loggedIn: req.session.loggedIn
       });
     } else {
