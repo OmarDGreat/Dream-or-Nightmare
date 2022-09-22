@@ -2,18 +2,13 @@ async function newDreamHandler(event){
     event.preventDefault();
     
     const title = document.querySelector('input[name="dream-title"]').value;
-    const dreamPost=document.querySelector('textarea[name="dream-story"]').value;
-<<<<<<< HEAD:public/javascript/postDream.js
-
-    const response = await fetch('dream_story',{
-=======
+    const dream_story=document.getElementById('written-down-dream').value;
     
-    const response = await fetch('/dream_story',{
->>>>>>> testing-branch:public/javascript/post-dream.js
+    const response = await fetch('/api/dreams',{
         method: 'POST',
         body: JSON.stringify({
             title,
-            dreamPost
+            dream_story
         }),
         headers: {
             'Content-Type': 'application/json'
@@ -40,7 +35,4 @@ document.querySelector('#post-dream-form').addEventListener('submit', newDreamHa
 
 
 
-<<<<<<< HEAD:public/javascript/postDream.js
 document.querySelector('#post-dream-form').addEventListener('submit', newDreamHandler);
-=======
->>>>>>> testing-branch:public/javascript/post-dream.js
