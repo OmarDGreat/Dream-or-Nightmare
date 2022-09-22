@@ -98,5 +98,22 @@ router.delete("/:id", (req, res) => {
 });
 
 
+// post /api  FOR UPVOTE/DOWNVOTE
+router.post("/", (req, res) => {
+  Dream.create({
+    id: req.body.id,
+    upvote: req.body.upvote,
+    downvote: req.body.downvote,
+  })
+    .then((dbPostData) => res.json(dbPostData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
+// post /api
+router.post("/", (req, res) => {
+});
+  
 module.exports = router;
