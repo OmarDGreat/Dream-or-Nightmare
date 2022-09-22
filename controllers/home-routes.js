@@ -2,6 +2,7 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const {User, Dream} = require('../models');
 
+
 //render homepage
 router.get('/', (req, res) => {
   res.render('homepage');
@@ -54,9 +55,20 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-// signup
+//logout
+router.get('/logout', (req, res) => {
+  
+  req.session.destroy(() => {
+    res.redirect('/login');
+  }
+  );
+  
+});
+
+//signup
 router.get('/signup', (req, res) => {
   res.render('signup');
 });
+
 
 module.exports = router;
