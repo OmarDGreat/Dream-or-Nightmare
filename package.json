@@ -1,31 +1,30 @@
 {
   "name": "handlebars",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "seeds": "node seeds/index.js",
     "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.0.1",
-    "body-parser": "^1.20.0",
-    "connect-flash": "^0.1.1",
-    "cookie-parser": "^1.4.6",
-    "dotenv": "^16.0.2",
-    "express": "^4.18.1",
-    "express-handlebars": "^6.0.6",
-    "express-session": "^1.17.3",
-    "express-toastr": "^1.1.0",
-    "morgan": "^1.10.0",
-    "mysql": "^2.18.1",
-    "mysql2": "^2.3.3",
-    "nodemon": "^2.0.20",
-    "pg": "^8.8.0",
-    "sequelize": "^6.22.1",
-    "social-media-sharing": "^1.0.2",
-    "toast": "^0.5.4"
-  }
+    "bcrypt": "^4.0.1",
+    "connect-session-sequelize": "^6.1.1",
+    "dotenv": "^8.6.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.17.0",
+    "handlebars": "^4.7.3",
+    "init": "^0.1.2",
+    "mysql2": "^2.1.0",
+    "sequelize": "^5.21.5",
+    "social-media-sharing": "^1.0.2"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0"
+  },
+  "keywords": [],
+  "description": ""
 }

@@ -1,26 +1,99 @@
 const router = require("express").Router();
-const Dream = require('../../models');
+const { User, Dream } = require("../../models");
+const sequelize = require("../../config/connection");
 
-router.get('/dream_story', (req,res)=>{
-    res.render('post-dream.handlebars')
-})
+router.get("/", (req, res) => {
+    res.render("post-dream");
+});
 
-router.post('/dream_story',(req,res)=>{
-    Dream.create({
-        title: req.body.title,
-        dream_story: req.body.dream_story,
-        //user_id: req.session.user_id
+
+// GET all dreams
+router.get("/all_dream", (req, res) => {
+    Dream.findAll({
+        attributes: [
+            "id",
+            "title",
+            "dream_story",
+            "upvote",
+            "downvote",
+            "created_at",
+        ],
+        order: [["created_at", "DESC"]],
+        include: [
+            {
+                model: User,
+                attributes: ["username"],
+            },
+        ],
     })
-    .then(dreamData=> res.json(dreamData))
-    .catch(err=>{
-        console.log(err);
-        res.status(500).json(err);
+        .then(((dbDreamData) => res.json(dbDreamData)))
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
+
+// get one user
+router.get("/all_dream/:id", (req, res) => {
+  Dream.findOne({
+    where: {
+      id: req.params.id,
+    },
+    attributes: [
+      "id",
+      "title",
+      "dream_story",
+      "created_at",
+    ],
+  })
+    .then((dbPostData) => {
+      if (!dbPostData) {
+        res.status(404).json({ message: "No Dream found with this id" });
+        return;
+      }
+      res.json(dbPostData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
     });
 });
 
-// m's updates below
-router.get('/my-dreams',(req,res) => {
-    res.render('my-dreams')
+// Dream /api/dreams
+router.post("/", (req, res) => {
+  // expects {title: 'Taskmaster goes public!', post_url: 'https://taskmaster.com/press', user_id: 1}
+  Dream.create({
+    title: req.body.title,
+    dream_story: req.body.dream_story,
+    // user_id: req.body.user_id,
   })
+    .then((dbPostData) => res.json(dbPostData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+
+// DELETE /api/posts/id
+router.delete("/:id", (req, res) => {
+  Dream.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((dbPostData) => {
+      if (!dbPostData) {
+        res.status(404).json({ message: "No Dream found with this id" });
+        return;
+      }
+      res.json(dbPostData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 module.exports = router;

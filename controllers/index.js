@@ -1,11 +1,12 @@
-const router = require("express").Router();
-const apiRoutes = require('./api');
-const mainRoutes= require('./dashboard-routes.js')
+const router = require('express').Router();
 
+const apiRoutes = require('./api/');
+const homeRoutes = require('./home-routes.js');
 
+router.use('/', homeRoutes);
 router.use('/api', apiRoutes);
-router.use('/', mainRoutes);
 
+<<<<<<< HEAD
 router.use((req, res) => {
   res.status(404).end();
 });
@@ -13,5 +14,7 @@ router.use((req, res) => {
 const User = require("../models/userSchema");
 
 
+=======
+>>>>>>> testing-branch
 
 module.exports = router;

@@ -1,17 +1,19 @@
 const Dream = require('./Dream');
-const User = require('./userSchema.js');
+const User = require('./User');
 
 //create relationships between models.
-Dream.belongsTo(User);
 
 User.hasMany(Dream,{
     foreignKey: 'user_id'
 })
 
+Dream.belongsTo(User,{
+    foreignKey: 'user_id',
+    onDelete: 'SET NULL'
+});
 
 
-
-module.exports = Dream;
+module.exports = { User, Dream };
 
 // User hasMany Dreams
 // Dreams belong to User

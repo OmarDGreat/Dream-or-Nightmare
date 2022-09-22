@@ -40,7 +40,7 @@ Dream.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "Dream",
+    modelName: 'dream'
   }
 );
 module.exports = Dream;
