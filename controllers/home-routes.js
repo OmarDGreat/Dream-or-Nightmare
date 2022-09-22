@@ -63,15 +63,15 @@ router.get('/logout', (req, res) => {
   
 });
 
-//signup
-router.get('/signup', (req, res) => {
-  res.render('signup');
-});
+// //signup
+// router.get('/signup', (req, res) => {
+//   res.render('signup');
+// });
 
-//my-dreams
-router.get('/my-dreams', (req, res) => {
-  res.render('my-dreams');
-});
+// //my-dreams
+// router.get('/my-dreams', (req, res) => {
+//   res.render('my-dreams');
+// });
 
 
 module.exports = router;
