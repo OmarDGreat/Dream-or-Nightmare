@@ -45,21 +45,22 @@ router.get("/all_dream/:id", (req, res) => {
       "title",
       "dream_story",
       "created_at",
+      "upvote",
+      "downvote",
     ],
   })
-    .then((dbPostData) => {
-      if (!dbPostData) {
-        res.status(404).json({ message: "No Dream found with this id" });
-        return;
-      }
-      res.json(dbPostData);
+    .then(singleDreamStory => {
+      const dreams = singleDreamStory.get({ plain: true });
+      res.render("homepage", {
+      dreams,
+      loggedIn: req.session.loggedIn
     })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
+  });
 });
-
 // Dream /api/dreams
 router.post("/", (req, res) => {
   // expects {title: 'Taskmaster goes public!', post_url: 'https://taskmaster.com/press', user_id: 1}
@@ -95,5 +96,7 @@ router.delete("/:id", (req, res) => {
       res.status(500).json(err);
     });
 });
+
+
 
 module.exports = router;

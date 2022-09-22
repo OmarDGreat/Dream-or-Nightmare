@@ -34,7 +34,7 @@ const sess = {
 
 app.use(session(sess));
 app.use((req, res, next) => {
-  res.locals.snpmession = req.session;
+  res.locals.session = req.session;
   next();
   });
 
