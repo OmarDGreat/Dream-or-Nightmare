@@ -2,14 +2,12 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const {User, Dream} = require('../models');
 
-
 //render homepage
 router.get('/', (req, res) => {
   res.render('homepage');
 });
 
 // get one post
-
 router.get('/dream/:id', (req, res) => {
   Dream.findOne({
     where: {
@@ -68,6 +66,11 @@ router.get('/logout', (req, res) => {
 //signup
 router.get('/signup', (req, res) => {
   res.render('signup');
+});
+
+//my-dreams
+router.get('/my-dreams', (req, res) => {
+  res.render('my-dreams');
 });
 
 
