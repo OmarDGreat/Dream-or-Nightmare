@@ -2,7 +2,22 @@ const router = require("express").Router();
 const Dream = require('../../models');
 
 router.get('/dream_story', (req,res)=>{
-    res.render('post-dream.handlebars')
+    Dream.fineOne({
+        where:{
+            id: placeholder// i want to randomly pull a dream from an array, and then use that to populate the handlebars.
+        },
+        attributes:[
+            'id',
+            'title',
+            'dream_story',
+            'upvote',
+            'downvote'
+        ]
+    }).then(singleDreamStory=>{
+        const dreams = singleDreamStory.get({ plain:true });
+        res.render('post-dream.handlebars', dreams)
+    })
+
 })
 
 router.post('/dream_story',(req,res)=>{
