@@ -4,7 +4,25 @@ const {User, Dream} = require('../models');
 
 //render homepage
 router.get('/', (req, res) => {
-  res.render('homepage');
+  Dream.findAll({
+    attributes: [
+      "id",
+      "title",
+      "dream_story",
+      "upvote",
+      "downvote",
+    ],
+  })
+  .then((dbDreamData) => {
+    console.log(dbDreamData);
+  const randomNumber = Math.floor(Math.random() * dbDreamData.length);
+  var randomDream = dbDreamData[randomNumber];
+  // console.log(randomDream);
+  res.render("homepage", {
+    dreams: randomDream.dataValues,
+    loggedIn: req.session.loggedIn  
+  })
+  });
 });
 
 // get one post
