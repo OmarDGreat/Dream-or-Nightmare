@@ -53,13 +53,13 @@ router.get("/all_dream/:id", (req, res) => {
       const dreams = singleDreamStory.get({ plain: true });
       res.render("homepage", {
       dreams,
-      loggedIn: req.session.loggedIn
+      loggedIn: req.session.loggedIn  
     })
-    .catch((err) => {
+  })
+    .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
-  });
 });
 // Dream /api/dreams
 router.post("/", (req, res) => {
